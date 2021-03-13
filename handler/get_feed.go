@@ -3,7 +3,7 @@ package handler
 import (
   "net/http"
 
-  "github.com/labstack/echo"
+  "github.com/labstack/echo/v4"
 )
 
 func RSSFeedHandler(c echo.Context) error {
@@ -11,6 +11,6 @@ func RSSFeedHandler(c echo.Context) error {
   // TODO: Get RSS feed and return to client
 
   feedURL := c.FormValue("feedURL") 
-  return c.String(http.StatusOK, "RSS-feed content to given feedURL") 
+  return c.String(http.StatusOK, feedURL) 
 
 }
