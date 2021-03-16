@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-
+	//port := ":5000"
 	e := echo.New()
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
@@ -26,5 +26,5 @@ func main() {
 	e.POST("/v1/rss-feed/", handler.RSSFeedHandler)            // get RSS feed to given feedURL
 	e.POST("/v1/aggregate-feed/", handler.RSSAggregateHandler) // get aggregated RSS feed to list of feedURLs
 
-	e.Logger.Fatal(e.Start(":1323"))
+	e.Logger.Fatal(e.Start(":5000"))
 }
