@@ -110,6 +110,24 @@ func getRSSFeed(feedURL string) []RSSFeedItem {
 	})
 	return rssFeed
 }
+
+func aggregateRSSFeed(feedURLs []string) []RSSFeedItem {
+	// called by aggregateRSSFeedhandler
+	// returns lists of feed items from given feedURLs
+
+	aggregatedRSS := make([]RSSFeedItem, 0)
+	
+	for _, feedURL := range feedURLs {
+		rssFeed := fetchRSS(feedURL) // fetch and get feed items
+		aggregatedRSS = append(aggregatedRSS, rssFeed...)
+	}
+	// sort RSS feed items
+	sort.Slice(aggregatedRSS, func(i, j int) bool {
+		return aggregatedRSS[j].PubDate.Before(aggregatedRSS[i].PubDate)
+	})
+	return aggregatedRSS
+}
+
 func RSSFeedHandler(c echo.Context) error {
 	// : Get RSS feed to given feedURL and return to client
 
@@ -129,3 +147,22 @@ func RSSFeedHandler(c echo.Context) error {
 	return c.JSON(http.StatusOK, rssFeed)
 }
 
+func RSSAggregateHandler(c echo.Context) error {
+	// Take feedURLs as JSON { "feedURLs" : [ <feed1>, <feed2>, .. ]
+	// Get aggregated RSS feed and return to client 
+	
+	// Read json from request body and get list of feedURLs
+	aggregate_json_map := make(map[string][]string) 
+	err := json.NewDecoder(c.Request().Body).Decode(&aggregate_json_map)
+	if err!=nil {
+		fmt.Println(err)
+	}
+	feedURLs := aggregate_json_map["feedURLs"]
+
+	// Get aggregated RSS feed for the given feedURL and return
+	AggregatedRssFeed := &RSSFeed{
+		Updated: time.Now(),
+		RSSFeedList: aggregateRSSFeed(feedURLs),
+	}
+	return c.JSON(http.StatusOK, AggregatedRssFeed)
+}
