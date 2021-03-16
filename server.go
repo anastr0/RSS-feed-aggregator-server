@@ -2,21 +2,20 @@ package main
 
 import (
 	"net/http"
-	
 	"github.com/labstack/echo/v4"
-
+	"github.com/labstack/echo/v4/middleware"
 	"github.com/anaswaratrajan/RSS-feed-aggregator-server/handler"
 )
 
 func main() {
 	e := echo.New()
 
-	e.GET("/v1", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
+	e.GET("/v1/", func(c echo.Context) error {
+		return c.String(http.StatusOK, "Healthcheck") // ping check
 	})
 
-	e.POST("/v1/rss-feed", handler.RSSFeedHandler)
-	e.GET("/v1/aggregate-feed", handler.RSSAggregateHandler)
+	e.POST("/v1/rss-feed/", handler.RSSFeedHandler) // get RSS feed to given feedURL
+	e.POST("/v1/aggregate-feed/", handler.RSSAggregateHandler) // get aggregated RSS feed to list of feedURLs
 
 	e.Logger.Fatal(e.Start(":1323"))
 }
