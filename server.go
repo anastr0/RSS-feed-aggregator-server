@@ -8,7 +8,16 @@ import (
 )
 
 func main() {
+
 	e := echo.New()
+	e.Use(middleware.Logger())
+	e.Use(middleware.Recover())
+
+	// enable CORs to any origin
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"*"},
+		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept},
+	  }))
 
 	e.GET("/v1/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Healthcheck") // ping check
