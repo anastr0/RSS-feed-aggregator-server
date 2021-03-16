@@ -57,6 +57,18 @@ type RSSFeed struct {
 }
 
 
+// all functions
+
+func parseDate(dateString string) time.Time {
+	// lots of date formats to handle, so used a package.
+	t, err := dateparse.ParseLocal(dateString)
+	if err != nil {
+		fmt.Printf("Error parsing date")
+		return time.Time{} // return zero value, (shows up in bottom of feed )
+	}
+	return t
+}
+
 func fetchRSS(feedURL string) []RSSFeedItem {
 
 	// fetch content from given feedURL and decodes into rss struct, returns list of items
