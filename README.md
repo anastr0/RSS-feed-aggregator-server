@@ -14,7 +14,7 @@ Check out [client](https://github.com/anaswaratrajan/RSS-feed-aggregator-client)
 
 ## Prerequisites 
 
-* Go 1.4+
+* Go 1.14
 
 ## Setup
 
