@@ -28,5 +28,5 @@ func main() {
 	e.POST("/v1/rss-feed/", handler.RSSFeedHandler)            // get RSS feed to given feedURL
 	e.POST("/v1/aggregate-feed/", handler.RSSAggregateHandler) // get aggregated RSS feed to list of feedURLs
 
-	e.Logger.Fatal(e.Start(fmt.Sprintf("%s", os.Getenv("PORT")))) 
+	e.Logger.Fatal(e.Start(fmt.Sprintf(":%s", os.Getenv("PORT")))) 
 }
