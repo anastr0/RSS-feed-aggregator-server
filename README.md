@@ -15,7 +15,7 @@ cd RSS-feed-aggregator-server
 #  Run
 
 ```
-PORT=:5000 go run server go
+PORT=5000 go run server go
 ```
 
 # Endpoints 
