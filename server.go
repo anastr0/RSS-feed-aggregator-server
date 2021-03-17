@@ -5,6 +5,8 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"net/http"
+	"fmt"
+	"os"
 )
 
 func main() {
@@ -26,5 +28,5 @@ func main() {
 	e.POST("/v1/rss-feed/", handler.RSSFeedHandler)            // get RSS feed to given feedURL
 	e.POST("/v1/aggregate-feed/", handler.RSSAggregateHandler) // get aggregated RSS feed to list of feedURLs
 
-	e.Logger.Fatal(e.Start(":5000"))
+	e.Logger.Fatal(e.Start(fmt.Sprintf("%s", os.Getenv("PORT")))) 
 }
