@@ -22,7 +22,7 @@ func main() {
 	}))
 
 	e.GET("/v1/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Health") // ping check
+		return c.String(http.StatusOK, "Healthy") // ping check
 	})
 
 	e.POST("/v1/rss-feed/", handler.RSSFeedHandler)            // get RSS feed to given feedURL
