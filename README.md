@@ -25,6 +25,8 @@ cd RSS-feed-aggregator-server
 PORT=5000 go run server go
 ```
 
+http://localhost:5000
+
 ## Endpoints 
 
 * POST `/v1/rss-feed/` 
