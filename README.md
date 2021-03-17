@@ -20,8 +20,8 @@ PORT=:5000 go run server go
 
 # Endpoints 
 
-* \POST `/v1/rss-feed/` 
-
+* POST `/v1/rss-feed/` 
+* POST `/v1/aggregate-feed/` 
 
 # Usage 
 
