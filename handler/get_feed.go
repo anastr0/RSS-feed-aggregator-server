@@ -9,6 +9,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"net/url"
 	"sort"
 	"time"
 )
@@ -67,9 +68,19 @@ func parseDate(dateString string) time.Time {
 	return t
 }
 
+func validateURL(feedURL string) bool {
+	u, err := url.ParseRequestURI(feedURL)
+	if err != nil {
+		return false
+	}
+	fmt.Println(u)
+	return true
+}
+
 func fetchRSS(feedURL string) []RSSFeedItem {
 
 	// fetch content from given feedURL and decodes into rss struct, returns list of items
+
 	resp, err := http.Get(feedURL) // fetch from feedURL
 	if err != nil {
 		log.Fatalln(err)
@@ -135,6 +146,11 @@ func RSSFeedHandler(c echo.Context) error {
 	json_map := make(map[string]interface{})
 	err := json.NewDecoder(c.Request().Body).Decode(&json_map)
 	feedURL := json_map["feedURL"].(string)
+
+	if (validateURL(feedURL)==false) {
+		return c.String(http.StatusOK, "Provide valid URL")
+	}
+
 	if err != nil {
 		return c.String(http.StatusOK, "Provide valid Json")
 	}
