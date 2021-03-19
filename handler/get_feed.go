@@ -69,7 +69,7 @@ func parseDate(dateString string) time.Time {
 }
 
 func validateURL(feedURL string) bool {
-	u, err := url.ParseRequestURI("http://google.com/")
+	u, err := url.ParseRequestURI(feedURL)
 	if err != nil {
 		return false
 	}
