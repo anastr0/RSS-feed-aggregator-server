@@ -3,7 +3,9 @@ REST Server api in GO, aggregates RSS feed,
 hosted [here](https://rss-feed-aggregater-server.herokuapp.com/v1/)!  
 
 
+
 Check out [client](https://github.com/anaswaratrajan/RSS-feed-aggregator-client)) repository.
+
 ## Table of contents
 
 - [Prerequisites](#prerequisites)
@@ -14,7 +16,7 @@ Check out [client](https://github.com/anaswaratrajan/RSS-feed-aggregator-client)
 
 ## Prerequisites 
 
-* Go 1.4+
+* Go 1.14
 
 ## Setup
 
@@ -66,3 +68,4 @@ curl -X POST http://localhost:5000/v1/aggregate-feed/ \
 . 
 . 
 ```
+
