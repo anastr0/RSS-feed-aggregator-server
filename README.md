@@ -2,8 +2,6 @@
 REST Server api in GO, aggregates RSS feed, 
 hosted [here](https://rss-feed-aggregater-server.herokuapp.com/v1/)!  
 
-
-
 Check out [client](https://github.com/anaswaratrajan/RSS-feed-aggregator-client)) repository.
 
 ## Table of contents
@@ -12,11 +10,11 @@ Check out [client](https://github.com/anaswaratrajan/RSS-feed-aggregator-client)
 - [Setup and run](#Setup)
 - [Usage](#Usage)
 - [Features](#Features)
-- [Repository-structure ](#Repository-structure )
+- [Repository-Structure](#Repository-Structure )
 
 ## Prerequisites 
 
-* Go 1.14
+* Go 1.16
 
 ## Setup
 
@@ -24,6 +22,10 @@ Check out [client](https://github.com/anaswaratrajan/RSS-feed-aggregator-client)
 git clone git@github.com:anaswaratrajan/RSS-feed-aggregator-server.git 
 
 cd RSS-feed-aggregator-server
+
+go get github.com/araddon/dateparse
+
+go get github.com/labstack/echo/v4
 
 PORT=5000 go run server go
 ```
@@ -51,7 +53,7 @@ curl -X POST http://localhost:5000/v1/aggregate-feed/ \
 -d '{"feedURLs":["https://home.cern/api/news/news/feed.rss", "https://www.nasa.gov/rss/dyn/breaking_news.rss"]}' 
 ```
 
-## Repository 
+## Repository-Structure 
 
 ```
 .
